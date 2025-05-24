@@ -1,4 +1,4 @@
-package com.example.localloop;
+package com.project.localloop;
 
 import org.junit.Test;
 

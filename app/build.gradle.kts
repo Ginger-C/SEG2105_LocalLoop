@@ -1,13 +1,16 @@
 plugins {
     alias(libs.plugins.android.application)
+    // Add the Google services Gradle plugin. Support for firebase.
+    id("com.android.application")
+    id("com.google.gms.google-services")
 }
 
 android {
-    namespace = "com.example.localloop"
+    namespace = "com.project.localloop"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.localloop"
+        applicationId = "com.project.localloop"
         minSdk = 33
         targetSdk = 35
         versionCode = 1
@@ -46,4 +49,8 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    // Import the Firebase BoM
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
 }
