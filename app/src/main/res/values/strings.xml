@@ -1,13 +1,83 @@
 <resources>
+    <!-- Strings related to system features -->
     <string name="app_name">LocalLoop2025</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings related to sidebar menu -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
+    <string name="menu_home">Home</string>
+    <string name="nav_header_title">Local Loop</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <!-- Strings related to login/sign up options -->
+    <!-- Log In -->
+    <string name="logIn_account">Email Address/Username</string>
+    <string name="logIn_password">Password</string>
+    <string name="logIn_invalid_account">Not a valid username</string>
+    <string name="logIn_invalid_password">Password must be >5 characters</string>
+    <string name="logIn_failed">"Login failed"</string>
+    <string name="logIn_success">"Login successful"</string>
+    <!-- Sign Up -->
+    <string name="signUp_email">Email Address</string>
+    <string name="signUp_username">Username</string>
+    <string name="signUp_password">Password</string>
+    <string name="signUp_verifyPassword">Verify Password</string>
+    <string name="signUp_failed">"Sign up failed"</string>
+    <string name="signUp_success">"Sign up successful"</string>
+    <string name="signUp_invalid_username">Not a valid username</string>
+    <string name="signUp_invalid_email">Not a valid email</string>
+    <string name="signUp_invalid_password">Password must be >5 characters</string>
+    <string name="signUp_invalid_verifyPassword">Passwords do not match</string>
+    <!-- Buttons -->
+    <string name="userPage_logInButton">Log in</string>
+    <string name="userPage_signUpButton">Sign Up</string>
+    <string name="signUp_submitButton">Submit</string>
+    <string name="signUp_cancelButton">Cancel</string>
+
+    <string name="welcome">"Welcome!"</string>
+
+    <!-- Strings related to account management -->
+    <string name="accountType_Admin">Admin</string>
+    <string name="accountType_Participant">Participant</string>
+    <string name="accountType_Host">Host</string>
+
+
+    <!-- Strings related to Events management -->
+    <!-- Event Information -->
+    <string name="event_Date">Date:</string>
+    <string name="event_Time">Time:</string>
+    <string name="event_Duration">Duration:</string>
+    <string name="event_Category">Category:</string>
+    <string name="event_ID">ID:</string>
+    <string name="event_Name">Event Name:</string>
+    <string name="event_Description">Event Description:</string>
+    <string name="event_Location">Location:</string>
+    <string name="event_host">host:</string>
+    <string name="event_Capacity">Capacity:</string>
+    <string name="event_Status">Status:</string>
+
+    <!-- Event Set Up -->
+    <string name="event_Cancel">Cancel</string>
+    <string name="event_Delete">Delete</string>
+    <string name="event_Update">Update</string>
+    <string name="event_Create">Create</string>
+
+    <!-- Strings related to User Operations  -->
+    <!-- Admin Functionalities -->
+    <string name="admin_ApproveEvent">Approve Event</string>
+    <string name="admin_RejectEvent">Reject Event</string>
+
+    <!-- Participant Functionalities -->
+    <string name="participant_JoinEvent">Join Event</string>
+    <string name="participant_LeaveEvent">Leave Event</string>
+
+    <!-- host Functionalities -->
+    <string name="host_ApproveParticipant">Approve Participant</string>
+    <string name="host_RejectParticipant">Reject Participant</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_login_shared_view_model">LoginSharedViewModel</string>
+
 </resources>
