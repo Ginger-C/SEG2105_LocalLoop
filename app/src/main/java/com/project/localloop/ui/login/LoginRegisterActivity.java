@@ -8,7 +8,7 @@ import androidx.fragment.app.FragmentManager;
 
 public class LoginRegisterActivity extends AppCompatActivity {
 
-    // Fragment 标签（用于识别当前显示的是哪个 fragment）
+    // Fragment tags: to identify which fragment is currently displayed
     private static final String LOGIN_FRAGMENT_TAG = "login_fragment";
     private static final String REGISTER_FRAGMENT_TAG = "register_fragment";
 
@@ -17,7 +17,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_userlogin);
 
-        // 默认显示 LoginFragment
+        // On login fragment by default
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.userLogIn_fragContainer, new LoginFragment(), LOGIN_FRAGMENT_TAG)

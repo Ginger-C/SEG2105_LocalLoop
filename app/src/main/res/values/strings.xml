@@ -30,10 +30,10 @@
     <string name="signUp_invalid_password">Password must be >5 characters</string>
     <string name="signUp_invalid_verifyPassword">Passwords do not match</string>
     <!-- Buttons -->
-    <string name="userPage_logInButton">Log in</string>
-    <string name="userPage_signUpButton">Sign Up</string>
-    <string name="signUp_submitButton">Submit</string>
-    <string name="signUp_cancelButton">Cancel</string>
+    <string name="userPage_logInButton">LOG IN</string>
+    <string name="userPage_signUpButton">SIGN UP</string>
+    <string name="signUp_submitButton">SUBMIT</string>
+    <string name="signUp_cancelButton">CANCEL</string>
 
     <string name="welcome">"Welcome!"</string>
 

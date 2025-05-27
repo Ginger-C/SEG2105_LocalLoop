@@ -34,14 +34,14 @@ public class LoginFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // 获取 ViewModel（Activity 范围共享）
+        // Get Viewmodel
         viewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
 
-        // 找到输入框
+        // Receiving inputs
         EditText emailInput = view.findViewById(R.id.login_emailEditText);
         EditText passwordInput = view.findViewById(R.id.login_passwordEditText);
 
-        // 实时监听输入
+        // Adding listeners for input changes
         emailInput.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override public void afterTextChanged(Editable s) {}
