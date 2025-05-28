@@ -1,10 +1,13 @@
 package com.project.localloop.ui.login;
+import com.project.localloop.ui.home.MainActivity;
 
 import android.os.Bundle;
 import com.project.localloop.R;
 import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
+import android.util.Log;
+
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 public class LoginRegisterActivity extends AppCompatActivity {
 
@@ -25,11 +28,21 @@ public class LoginRegisterActivity extends AppCompatActivity {
         }
     }
 
-    // 供 Fragment 调用的跳转方法（例如 LoginFragment -> RegisterFragment）
+    // Fragment Jump: register page
     public void showRegisterFragment() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.userLogIn_fragContainer, new RegisterFragment(), REGISTER_FRAGMENT_TAG)
-                .addToBackStack(null) // 加入返回栈，用户可以返回
+                .addToBackStack(null) // Can return
                 .commit();
     }
+    // Fragment Jump: jump to MainActivity.java once login successfully
+    public void onLoginSuccess(String userName, int accountType) {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("EXTRA_USERNAME", userName);// bring username to MainActivity
+        intent.putExtra("EXTRA_ROLE", accountType);
+        Log.d("LoginRegisterActivity", "onLoginSuccess: " + userName + " " + accountType);
+        startActivity(intent);
+        finish(); // don't allow going back to login-in at this point
+    }
+
 }

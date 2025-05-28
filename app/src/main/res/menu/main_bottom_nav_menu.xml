@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/botNav_left"
+        android:icon="@drawable/ic_home"
+        android:title="@string/botNav_home" />
+
+    <item
+        android:id="@+id/botNav_center"
+        android:icon="@drawable/ic_event_pending"
+        android:title="@string/botNav_events_created" />
+
+    <item
+        android:id="@+id/botNav_right"
+        android:icon="@drawable/ic_notification"
+        android:title="@string/botNav_notifications" />
+
+</menu>

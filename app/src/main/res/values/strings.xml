@@ -9,6 +9,24 @@
     <string name="nav_header_title">Local Loop</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
+    <string name="nav_user_info">User Info</string>
+    <string name="nav_event_history">Event History</string>
+    <string name="nav_suspended_list">Suspended List</string>
+    <string name="nav_log_out">LOG OUt</string>"
+
+    <!-- Strings related to main page bottom nav -->
+    <string name="botNav_home">Home</string>
+    <string name="botNav_events_browse">Event Browser</string>
+    <string name="botNav_events_registered">Current Events</string>
+    <string name="botNav_events_created">Created Events</string>
+    <string name="botNav_notifications">Notifications</string>
+    <!-- admin -->
+    <string name="botNav_userList">User List</string>
+    <string name="botNav_categoryList">Category List</string>
+
+
+
+
 
     <!-- Strings related to login/sign up options -->
     <!-- Log In -->
