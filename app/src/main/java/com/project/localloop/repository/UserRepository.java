@@ -48,6 +48,7 @@ public class UserRepository {
     public void registerUser(String email, String password, String userName, int accountType,Callback callback) {
         auth.createUserWithEmailAndPassword(email, password)
                 .addOnSuccessListener(result -> {
+                    // Do not record password in firestore
                     String uid = auth.getCurrentUser().getUid(); //access auth UID
                     Map<String, Object> userDoc = new HashMap<>();
                     userDoc.put("userId", uid); // assign auth UID to firestore document UID
@@ -84,7 +85,7 @@ public class UserRepository {
 
     // Grabbing user info
     public void loginAndLoadUserData(String email, String password, UserDataCallback callback) {
-        auth.signInWithEmailAndPassword(email, password)
+        auth.signInWithEmailAndPassword(email, password.trim()) // Ignore \n and \t
                 .addOnSuccessListener(result -> {
                     String uid = auth.getCurrentUser().getUid();
                     userRef.document(uid).get()

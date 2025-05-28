@@ -38,8 +38,8 @@ public class LoginRegisterActivity extends AppCompatActivity {
     // Fragment Jump: jump to MainActivity.java once login successfully
     public void onLoginSuccess(String userName, int accountType) {
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("EXTRA_USERNAME", userName);// bring username to MainActivity
-        intent.putExtra("EXTRA_ROLE", accountType);
+        intent.putExtra("userName", userName);// bring username to MainActivity
+        intent.putExtra("accountType", accountType);
         Log.d("LoginRegisterActivity", "onLoginSuccess: " + userName + " " + accountType);
         startActivity(intent);
         finish(); // don't allow going back to login-in at this point

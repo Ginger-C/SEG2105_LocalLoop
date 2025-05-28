@@ -17,15 +17,15 @@ public class HomeAdminFragment extends Fragment {
 
     // Param passed from Bundle
     private String userName;
-    private long userRole;
+    private long accountType;
 
     public static HomeAdminFragment newInstance(String name, long role) {
         HomeAdminFragment fragment = new HomeAdminFragment();
         Bundle args = new Bundle();
         args.putString("userName", name);
-        args.putLong("userRole", role);
+        args.putLong("accountType", role);
         fragment.setArguments(args);
-        Log.d("HomeAdminFragment", "Bundle set: userName=" + name + " | userRole=" + role);
+        Log.d("HomeAdminFragment", "Bundle set: userName=" + name + " | accountType=" + role);
         return fragment;
     }
 
@@ -46,11 +46,11 @@ public class HomeAdminFragment extends Fragment {
 
         if (args != null) {
             userName = args.getString("userName", "User");
-            userRole = args.getLong("userRole", -1);
+            accountType = args.getLong("accountType", -1);
 
-            Log.d("HomeHostFragment", "Received bundle: userName=" + userName + " | userRole=" + userRole);
+            Log.d("HomeHostFragment", "Received bundle: userName=" + userName + " | accountType=" + accountType);
 
-            String roleText = roleToString(userRole);
+            String roleText = roleToString(accountType);
             tv.setText("Welcome, " + userName + " (" + roleText + ")");
         } else {
             Log.e("HomeHostFragment", "No arguments received");
@@ -58,7 +58,7 @@ public class HomeAdminFragment extends Fragment {
         }
     }
 
-    // Helper: convert userRole to readable name
+    // Helper: convert accountType to readable name
     private String roleToString(long role) {
         if (role == 0) return "Admin";
         if (role == 1) return "Participant";

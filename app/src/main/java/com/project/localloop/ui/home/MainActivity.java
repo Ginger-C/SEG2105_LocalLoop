@@ -17,7 +17,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity {
     // User info: passed via Intent or Firebase, shared via Bundle
-    private Long userRole;
+    private Long accountType;
     private String userName;
 
     @Override
@@ -26,11 +26,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Step 1: Get from login
-        userRole = (long) getIntent().getIntExtra("accountType", -1);
+        accountType = (long) getIntent().getIntExtra("accountType", -1);
         userName = getIntent().getStringExtra("userName");
 
         // Step 2: If intent fails, fallback to Firestore
-        if (userRole == null || userRole == -1) {
+        if (accountType == null || accountType == -1) {
             try {
                 String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 FirebaseFirestore.getInstance()
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
                         .get()
                         .addOnSuccessListener(doc -> {
                             if (doc.exists()) {
-                                userRole = doc.getLong("accountType");
+                                accountType = doc.getLong("accountType");
                                 userName = doc.getString("userName");
 
                                 // After retrieving data, trigger center page load
@@ -106,17 +106,21 @@ public class MainActivity extends AppCompatActivity {
         // Get user info from Bundle
         Bundle bundle = new Bundle();
         bundle.putString("userName", userName);
-        bundle.putLong("accountType", userRole);
-        Log.d("MainActivity", "Passing to fragment: userName=" + userName + " | accountType=" + userRole);
+        bundle.putLong("accountType", accountType);
+        Log.d("MainActivity", "Passing to fragment: userName=" + userName + " | accountType=" + accountType);
 
         Fragment target;
 
-        if (userRole == 0L) {
+        if (accountType == 0L) {
             target = new HomeAdminFragment();
-        } else if (userRole == 1L) {
+        } else if (accountType == 1L) {
             target = new HomeHostFragment();
-        } else {
+        } else if (accountType == 2L){
             target = new HomeParticipantFragment();
+        }
+        else {
+            target = new Fragment(); // Empty fragment
+            Log.d("MainActivity", "Unknown user role: " + accountType);
         }
 
         target.setArguments(bundle);
@@ -127,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
      * Generate content of right fragment based on user role
      * */
     private Fragment createRightFragment() {
-        if (userRole == 0L) {
+        if (accountType == 0L) {
             return new HomeRightFragment_UL();
         } else {
             return new HomeRightFragment_Notif();
