@@ -36,7 +36,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
                 .commit();
     }
     // Fragment Jump: jump to MainActivity.java once login successfully
-    public void onLoginSuccess(String userName, int accountType) {
+    public void onLoginSuccess(String userName, long accountType) {
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("userName", userName);// bring username to MainActivity
         intent.putExtra("accountType", accountType);

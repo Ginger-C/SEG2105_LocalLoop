@@ -3,6 +3,7 @@ package com.project.localloop.ui.login;
 import android.os.Bundle;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputLayout;
 import com.project.localloop.R;
 import androidx.fragment.app.Fragment;
 import androidx.annotation.NonNull;
@@ -23,6 +24,12 @@ import androidx.lifecycle.ViewModelProvider;
 public class LoginFragment extends Fragment {
 
     private LoginViewModel viewModel;
+    private MaterialButton loginBtn;
+    private MaterialButton signUpBtn;
+    private EditText emailInput;
+    private EditText passwordInput;
+    private TextInputLayout passwordLayout;
+    private TextInputLayout emailLayout;
 
     @Nullable
     @Override
@@ -40,11 +47,15 @@ public class LoginFragment extends Fragment {
         // Get Viewmodel
         viewModel = new ViewModelProvider(requireActivity()).get(LoginViewModel.class);
 
-        // Receiving inputs
-        EditText emailInput = view.findViewById(R.id.login_emailEditText);
-        EditText passwordInput = view.findViewById(R.id.login_passwordEditText);
-        MaterialButton loginBtn = view.findViewById(R.id.user_loginBtn);
-        MaterialButton signUpBtn = view.findViewById(R.id.user_signUpBtn);
+        // Assign UI elements for receiving inputs.
+        emailInput = view.findViewById(R.id.login_emailEditText);
+        passwordInput = view.findViewById(R.id.login_passwordEditText);
+        passwordLayout = view.findViewById(R.id.login_passwordLayout);
+        loginBtn  = view.findViewById(R.id.user_loginBtn);
+        signUpBtn = view.findViewById(R.id.user_signUpBtn);
+
+        // Disable login by default
+        loginBtn.setEnabled(false);
 
         // Adding listeners for input changes
         emailInput.addTextChangedListener(new TextWatcher() {
@@ -52,7 +63,13 @@ public class LoginFragment extends Fragment {
             @Override public void afterTextChanged(Editable s) {}
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String emailSTR = s.toString().trim();
                 viewModel.setEmail(s.toString());
+                if (emailSTR.isEmpty()) {
+                    emailLayout.setError("Please enter username.");
+                } else {
+                    loginBtn.setEnabled(true);
+                }
             }
         });
         passwordInput.addTextChangedListener(new TextWatcher() {
@@ -60,7 +77,19 @@ public class LoginFragment extends Fragment {
             @Override public void afterTextChanged(Editable s) {}
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                viewModel.setPassword(s.toString());
+                String pwd = s.toString().trim();
+                viewModel.setPassword(pwd);
+                if (pwd.length() < 6) {
+                    passwordLayout.setError("Password must be at least 6 characters.");
+                }
+                else if(pwd.length() > 20)
+                {
+                    passwordLayout.setError("Password must be at most 20 characters.");
+                }
+                else {
+                    passwordLayout.setError(null);
+                    loginBtn.setEnabled(true);
+                }
             }
         });
 

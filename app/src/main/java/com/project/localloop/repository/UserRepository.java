@@ -45,7 +45,7 @@ public class UserRepository {
         void onError(String error);
     }
 
-    public void registerUser(String email, String password, String userName, int accountType,Callback callback) {
+    public void registerUser(String email, String password, String userName, long accountType,Callback callback) {
         auth.createUserWithEmailAndPassword(email, password)
                 .addOnSuccessListener(result -> {
                     // Do not record password in firestore

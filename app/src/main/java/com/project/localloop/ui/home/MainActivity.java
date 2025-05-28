@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Step 1: Get from login
-        accountType = (long) getIntent().getIntExtra("accountType", -1);
+        accountType = getIntent().getLongExtra("accountType", -1);
         userName = getIntent().getStringExtra("userName");
 
         // Step 2: If intent fails, fallback to Firestore

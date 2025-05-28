@@ -12,6 +12,7 @@ public class RegisterViewModel extends ViewModel {
     // Mutable Liva Data: listen for changes
     private final MutableLiveData<String> email     = new MutableLiveData<>();
     private final MutableLiveData<String> userName  = new MutableLiveData<>();
+    private final MutableLiveData<Long> accountType  = new MutableLiveData<>();
     private final MutableLiveData<String> password  = new MutableLiveData<>();
     private final MutableLiveData<String> confirmPassword  = new MutableLiveData<>();
     // Register Result. Inner class declared at bottom.
@@ -20,12 +21,14 @@ public class RegisterViewModel extends ViewModel {
     public void setEmail(String email) { this.email.setValue(email); }
     public void setPassword(String pwd) { this.password.setValue(pwd); }
     public void setUserName(String name) { this.userName.setValue(name); }
+    public void setAccountType(Long accountType) { this.accountType.setValue(accountType); }
 
     public LiveData<String> getEmail() { return email; }
     public LiveData<String> getPassword() { return password; }
     public LiveData<String> getUserName() { return userName; }
+    public LiveData<Long> getAccountType() { return accountType; }
     public LiveData<RegisterResult> getRegisterResult() { return registerResult; }
-    public void register(String email, String password,String username,int accountType) {
+    public void register(String email, String password,String username,long accountType) {
         repo.registerUser(email, password,username,accountType, new UserRepository.Callback() {
             @Override
             public void onSuccess() {
@@ -43,9 +46,9 @@ public class RegisterViewModel extends ViewModel {
         public final boolean success;
         public final String error;
         public final String userName;
-        public final int accountType;
+        public final long accountType;
 
-        public RegisterResult(boolean success, String error,String userName, int accountType) {
+        public RegisterResult(boolean success, String error,String userName, long accountType) {
             this.success = success;
             this.error = error;
             this.userName = userName;

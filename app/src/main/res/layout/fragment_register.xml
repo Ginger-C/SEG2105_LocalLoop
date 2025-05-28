@@ -20,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.1"
         app:endIconMode="clear_text"
+        app:errorEnabled="true"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -44,6 +45,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintVertical_bias="0.0"
         app:endIconMode="clear_text"
+        app:errorEnabled="true"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -68,6 +70,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintVertical_bias="0.0"
         app:endIconMode="password_toggle"
+        app:errorEnabled="true"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         >
         <com.google.android.material.textfield.TextInputEditText
@@ -93,6 +96,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintVertical_bias="0.0"
         app:endIconMode="password_toggle"
+        app:errorEnabled="true"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         >
         <com.google.android.material.textfield.TextInputEditText
@@ -104,28 +108,33 @@
             />
     </com.google.android.material.textfield.TextInputLayout>
      <!--   Account Type Selection -->
-    <RadioGroup
+    <com.google.android.material.button.MaterialButtonToggleGroup
         android:id="@+id/signUp_accountTypeSelect"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="24dp"
+        app:singleSelection="true"
+        app:selectionRequired="true"
         app:layout_constraintTop_toBottomOf="@id/signUp_pwConfirmLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <com.google.android.material.radiobutton.MaterialRadioButton
-            android:id="@+id/hostRadio"
-            android:layout_width="wrap_content"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_host"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/accountType_Host" />
 
-        <com.google.android.material.radiobutton.MaterialRadioButton
-            android:id="@+id/participantRadio"
-            android:layout_width="wrap_content"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_participant"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/accountType_Participant" />
-    </RadioGroup>
+
+    </com.google.android.material.button.MaterialButtonToggleGroup>
     <!--    Submit or Cancel-->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/signUp_submitButton"

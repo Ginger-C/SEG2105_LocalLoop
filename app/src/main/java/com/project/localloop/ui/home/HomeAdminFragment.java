@@ -51,7 +51,7 @@ public class HomeAdminFragment extends Fragment {
             Log.d("HomeHostFragment", "Received bundle: userName=" + userName + " | accountType=" + accountType);
 
             String roleText = roleToString(accountType);
-            tv.setText("Welcome, " + userName + " (" + roleText + ")");
+            tv.setText("Welcome, " + userName + "! You are logged in as (" + roleText + ").");
         } else {
             Log.e("HomeHostFragment", "No arguments received");
             tv.setText("Welcome (unknown)");

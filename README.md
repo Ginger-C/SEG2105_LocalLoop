@@ -6,6 +6,14 @@ LocalLoop is a mobile platform for local community events.<br>
 -  compileSdk = 35 / minSDK = 33
 - UI: Material Design 2 (subject to change)
 - DB: Firebase database (auth + firestore)
+- 
+### Account policy
+Username
+- no more than 20 characters
+Password
+- Require least 1 uppercase, 1 lowercase, and 1 numeric character.
+- Require at least 6 characters.
+- Limit at most 20 characters.
 
 ## Deliverables
 The submission of the project is divided into four deliverables, each implementing a portion of the main functionality. Specifically:<br>
