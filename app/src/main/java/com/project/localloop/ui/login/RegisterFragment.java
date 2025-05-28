@@ -3,22 +3,33 @@ package com.project.localloop.ui.login;
 import android.os.Bundle;
 import com.project.localloop.R;
 import androidx.fragment.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
+//Import UI related libraries
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import com.google.android.material.button.MaterialButton;
 import android.widget.EditText;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import androidx.lifecycle.ViewModelProvider;
+
+//Import firebase related libraries
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 
 public class RegisterFragment extends Fragment {
 
-    private SharedViewModel viewModel;
+    private RegisterViewModel viewModel;
+
+    //Firebase
+    private FirebaseAuth auth;
+    private FirebaseFirestore database;
+    private MaterialButton signUpBtn;
+
 
     @Nullable
     @Override
@@ -33,7 +44,7 @@ public class RegisterFragment extends Fragment {
                               @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        viewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
+        viewModel = new ViewModelProvider(requireActivity()).get(RegisterViewModel.class);
 
         // 注册输入框示例
         EditText emailInput = view.findViewById(R.id.signUp_emailEditText);

@@ -2,8 +2,6 @@ plugins {
     alias(libs.plugins.android.application)
     // Add the Google services Gradle plugin. Support for firebase.
     id("com.google.gms.google-services")
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
 }
 
 android {
@@ -64,6 +62,9 @@ dependencies {
     // Import the Firebase BoM
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore)
+
 
     //UI Layout
     implementation(libs.material)

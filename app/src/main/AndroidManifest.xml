@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.home.MainActivity"
             android:exported="false"
             android:label="@string/app_name"
             android:theme="@style/Theme.LocalLoop2025.NoActionBar">

@@ -1,4 +1,4 @@
-package com.project.localloop.ui.database;
+package com.project.localloop.database;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,14 +8,15 @@ import java.util.List;
  * Subclass representing event participants.
  * Participants can register and join events.
  *
- * @author Wen Bin
+ * @author Ginger-C
+ * @since 2025-05-23
  */
 public class Participant extends User {
 
     /**
      * Events the user is attending or has attended.
      */
-    protected List<Event> registeredEvents = new ArrayList<>();
+    protected List<String> registeredEventIds = new ArrayList<>(); // use event UID to identify
 
     /**
      * Required empty constructor for Firebase.
@@ -37,15 +38,20 @@ public class Participant extends User {
     /**
      * @return list of registered events
      */
-    public List<Event> getRegisteredEvents() {
-        return registeredEvents;
+    public List<String> getRegisteredEvents() {
+        return registeredEventIds;
     }
 
     /**
      * Adds an event to participant's registered list.
      * @param event the event to register
      */
-    public void registerEvent(Event event) {
-        registeredEvents.add(event);
+    public void registerEvent(String event) {
+        registeredEventIds.add(event);
+    }
+
+    protected void setSuspended(boolean suspended)
+    {
+        this.isSuspended = suspended;
     }
 }

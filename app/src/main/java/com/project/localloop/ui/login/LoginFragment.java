@@ -1,9 +1,13 @@
 package com.project.localloop.ui.login;
 
 import android.os.Bundle;
+
 import com.project.localloop.R;
 import androidx.fragment.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
+//Import UI related libraries
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -11,15 +15,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import androidx.lifecycle.ViewModelProvider;
+
+//Import firebase related libraries
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LoginFragment extends Fragment {
 
-    private SharedViewModel viewModel;
+    private LoginViewModel viewModel;
 
     @Nullable
     @Override
@@ -35,7 +39,7 @@ public class LoginFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // Get Viewmodel
-        viewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
+        viewModel = new ViewModelProvider(requireActivity()).get(LoginViewModel.class);
 
         // Receiving inputs
         EditText emailInput = view.findViewById(R.id.login_emailEditText);
@@ -60,8 +64,8 @@ public class LoginFragment extends Fragment {
             }
         });
 
-        // 登录失败 -> 点击“去注册”
-        Button signUpButton = view.findViewById(R.id.user_signUpButton);
+        // Log in failed, go to register
+        Button signUpButton = view.findViewById(R.id.user_signUpBtn);
         signUpButton.setOnClickListener(v -> {
             if (getActivity() instanceof LoginRegisterActivity) {
                 ((LoginRegisterActivity) getActivity()).showRegisterFragment();

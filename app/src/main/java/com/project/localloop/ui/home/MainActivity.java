@@ -1,7 +1,6 @@
-package com.project.localloop;
+package com.project.localloop.ui.home;
 
 import android.os.Bundle;
-import android.view.View;
 import android.view.Menu;
 
 import com.google.android.material.navigation.NavigationView;
@@ -13,6 +12,7 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.project.localloop.R;
 import com.project.localloop.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {

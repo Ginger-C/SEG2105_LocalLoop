@@ -1,4 +1,4 @@
-package com.project.localloop.ui.database;
+package com.project.localloop.database;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,14 +11,19 @@ import java.util.Map;
  * - userId: only set once after creation, no overwrite allowed
  * - email: immutable after creation, no setter
  * - accountType: immutable after creation, no setter
- * @author Wen Bin
+ *
+ * @author Ginger-C
+ * @since 2025-05-24
  */
 public abstract class User {
 
     // ===========================
     // Account core information
     // ===========================
-
+    public static final int TYPE_ADMIN = 0;
+    public static final int TYPE_HOST = 1;
+    public static final int TYPE_PARTICIPANT = 2;
+    public static final int TYPE_ERROR = -1;
     /**
      * Firebase UID. Set once from FirebaseAuth.
      * No override allowed once set.
@@ -123,7 +128,7 @@ public abstract class User {
     }
 
     // ===========================
-    // ✏️ Setters (restricted)
+    //  Setters (restricted)
     // ===========================
 
     /**
@@ -160,9 +165,7 @@ public abstract class User {
      * Sets suspension status (admin only).
      * @param suspended true to suspend, false to release
      */
-    protected void setSuspended(boolean suspended) {
-        this.isSuspended = suspended;
-    }
+    protected abstract void setSuspended(boolean suspended);
 
     // ===========================
     //  Firebase Mapper
