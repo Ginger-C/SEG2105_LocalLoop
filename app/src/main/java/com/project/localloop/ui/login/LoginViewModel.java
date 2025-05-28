@@ -3,12 +3,14 @@ package com.project.localloop.ui.login;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import android.util.Log;
+
 import com.project.localloop.repository.UserRepository;
 
 public class LoginViewModel extends ViewModel {
     // Firebase encapsulated
     private final UserRepository repo = UserRepository.getInstance();
-    // Mutable Liva Data: listen for changes
+    // Mutable LiveData: listen for changes
     private final MutableLiveData<String> email    = new MutableLiveData<>();
     private final MutableLiveData<String> password = new MutableLiveData<>();
     // Login Result. Inner class declared at bottom.
@@ -26,21 +28,38 @@ public class LoginViewModel extends ViewModel {
     public void login() {
         String emailStr = email.getValue();
         String pwdStr   = password.getValue();
-        // 1. Case empty
-        if (emailStr == null || pwdStr == null) {
-            loginResult.setValue(new LoginResult(false, "Please enter email and password",null, -1));
+        Log.d("LoginVM", "login() called → email=" + emailStr + "  pwd=" + pwdStr);
+
+        // 1. Case empty or blank
+        if (emailStr == null || pwdStr == null
+                || emailStr.trim().isEmpty() || pwdStr.trim().isEmpty()) {
+            loginResult.setValue(
+                    new LoginResult(false,
+                            "Please enter email and password",
+                            null,
+                            -1)
+            );
             return;
         }
+
         // 2. Case succeed: login and load user data
         repo.loginAndLoadUserData(emailStr, pwdStr, new UserRepository.UserDataCallback() {
             @Override
             public void onSuccess(String userName, int accountType) {
-                loginResult.setValue(new LoginResult(true, null, userName, accountType));
+                Log.d("LoginVM", "onSuccess: userName=" + userName + "  accountType=" + accountType);
+                // postValue: ensure thread security
+                loginResult.postValue(
+                        new LoginResult(true, null, userName, accountType)
+                );
             }
-        // 3. Case failed/invalid
+
+            // 3. Case failed/invalid
             @Override
             public void onError(String error) {
-                loginResult.setValue(new LoginResult(false, error, null, -1));
+                Log.e("LoginVM", "onError: " + error);
+                loginResult.postValue(
+                        new LoginResult(false, error, null, -1)
+                );
             }
         });
     }
@@ -51,10 +70,13 @@ public class LoginViewModel extends ViewModel {
         public final String userName;
         public final int accountType;
 
-        public LoginResult(boolean success, String error, String userName, int accountType) {
-            this.success = success;
-            this.error = error;
-            this.userName = userName;
+        public LoginResult(boolean success,
+                           String error,
+                           String userName,
+                           int accountType) {
+            this.success     = success;
+            this.error       = error;
+            this.userName    = userName;
             this.accountType = accountType;
         }
     }

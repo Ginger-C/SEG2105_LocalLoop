@@ -48,9 +48,9 @@ public class UserRepository {
     public void registerUser(String email, String password, String userName, int accountType,Callback callback) {
         auth.createUserWithEmailAndPassword(email, password)
                 .addOnSuccessListener(result -> {
-                    String uid = auth.getCurrentUser().getUid();
+                    String uid = auth.getCurrentUser().getUid(); //access auth UID
                     Map<String, Object> userDoc = new HashMap<>();
-                    userDoc.put("userId", uid);
+                    userDoc.put("userId", uid); // assign auth UID to firestore document UID
                     userDoc.put("userName", userName);
                     userDoc.put("email", email);
                     userDoc.put("accountType", accountType);
@@ -60,7 +60,14 @@ public class UserRepository {
                             .addOnSuccessListener(r -> callback.onSuccess())
                             .addOnFailureListener(e -> callback.onError(e.getMessage()));
                 })
-                .addOnFailureListener(e -> callback.onError(e.getMessage()));
+              .addOnFailureListener(e -> {
+                    // Failed to write in Firestore: delete authen
+                    auth.getCurrentUser()
+                            .delete()
+                            .addOnCompleteListener(del -> {
+                                callback.onError("Failed to save profile: " + e.getMessage());
+                            });
+                });
     }
 
     public void loginUser(String email, String password, Callback callback) {

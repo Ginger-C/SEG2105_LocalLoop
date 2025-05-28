@@ -3,13 +3,13 @@
 
     <item
         android:id="@+id/botNav_left"
-        android:icon="@drawable/ic_home"
-        android:title="@string/botNav_home" />
+        android:icon="@drawable/ic_event_pending"
+        android:title="@string/botNav_events_browse" />
 
     <item
         android:id="@+id/botNav_center"
-        android:icon="@drawable/ic_event_pending"
-        android:title="@string/botNav_events_created" />
+        android:icon="@drawable/ic_home"
+        android:title="@string/botNav_home" />
 
     <item
         android:id="@+id/botNav_right"

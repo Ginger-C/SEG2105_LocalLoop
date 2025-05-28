@@ -12,29 +12,51 @@ import com.project.localloop.R;
 
 public class HomeAdminFragment extends Fragment {
 
-    public static HomeAdminFragment newInstance() {
-        return new HomeAdminFragment();
+    private String userName;
+    private long userRole;
+
+    public HomeAdminFragment() {
+        // Required empty public constructor
     }
 
-    @Nullable @Override
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_home_host, container, false);
+    public static HomeAdminFragment newInstance(String name, long role) {
+        HomeAdminFragment fragment = new HomeAdminFragment();
+        Bundle args = new Bundle();
+        args.putString("userName", name);
+        args.putLong("userRole", role);
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
-    public void onViewCreated(@NonNull View view,
-                              @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        // Get username from MainActivity
-        TextView tv = view.findViewById(R.id.tv_welcome);
-        String userName = requireActivity()
-                .getIntent()
-                .getStringExtra(MainActivity.EXTRA_USERNAME);
-        String userRole = requireActivity()
-                .getIntent()
-                .getStringExtra(MainActivity.EXTRA_ROLE);
-        tv.setText(String.format("Welcome", userName, userRole));
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            userName = getArguments().getString("userName");
+            userRole = getArguments().getLong("userRole");
+        }
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        // Get username and role from arguments
+        TextView tv = view.findViewById(R.id.tv_welcome);
+        Bundle args = getArguments();
+        if (args != null) {
+            String userRoleString = roleToString(userRole);
+            tv.setText("Welcome, "+ userName+ "(" + userRoleString + ")");
+        } else {
+            tv.setText("Welcome (unknown)");
+        }
+    }
+
+    // Optional helper to convert role to readable string
+    private String roleToString(long role) {
+        if (role == 0) return "Admin";
+        if (role == 1) return "Participant";
+        if (role == 2) return "Host";
+        return "Unknown";
+    }
+
 }

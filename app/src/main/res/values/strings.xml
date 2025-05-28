@@ -9,10 +9,16 @@
     <string name="nav_header_title">Local Loop</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="nav_user_info">User Info</string>
+    <string name="nav_user_name">Username</string>
+    <string name="nav_user_profile">User Profile</string>
     <string name="nav_event_history">Event History</string>
     <string name="nav_suspended_list">Suspended List</string>
-    <string name="nav_log_out">LOG OUt</string>"
+    <string name="nav_log_out">LOG OUt</string>
+    <!--Navigation Item Operation -->
+    <string name ="nav_user_email">Email:</string>
+    <string name ="nav_user_role">Role:</string>
+    <string name ="nav_event_name">Event Name:</string>
+
 
     <!-- Strings related to main page bottom nav -->
     <string name="botNav_home">Home</string>
@@ -30,7 +36,7 @@
 
     <!-- Strings related to login/sign up options -->
     <!-- Log In -->
-    <string name="logIn_account">Email Address/Username</string>
+    <string name="logIn_account">Email Address</string>
     <string name="logIn_password">Password</string>
     <string name="logIn_invalid_account">Not a valid username</string>
     <string name="logIn_invalid_password">Password must be >5 characters</string>

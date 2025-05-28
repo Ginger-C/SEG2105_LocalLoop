@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_drawer_layout"
@@ -7,41 +8,47 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.MainActivity">
 
-    <!-- 主视图 -->
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <!-- Constraint layout: main page layout container -->
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- 顶部工具栏 -->
+        <!-- Top Toolbar -->
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/main_top_toolbar"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="?attr/actionBarSize"
+            app:title="@string/app_name"
             android:background="?attr/colorPrimary"
-            android:title="@string/app_name"
             android:titleTextColor="@android:color/white"
-            app:popupTheme="@style/ThemeOverlay.Material3.Light" />
+            app:popupTheme="@style/ThemeOverlay.Material3.Light"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Middle Fragment -->
+        <!-- Middle Fragment container: switch pages here -->
         <FrameLayout
             android:id="@+id/main_fragment_container"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="?attr/actionBarSize"
-            android:layout_marginBottom="56dp" />
+            app:layout_constraintTop_toBottomOf="@id/main_top_toolbar"
+            app:layout_constraintBottom_toTopOf="@id/main_bottom_nav"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Bottom Nav -->
+        <!-- Bottom navigation: 3 tabs, dynamic fragments -->
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/main_bottom_nav"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_gravity="bottom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:background="@color/white"
-            app:menu="@menu/main_bottom_nav_menu" />
-
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-    <!-- NAV bar -->
+            app:menu="@menu/main_bottom_nav_menu"
+            app:labelVisibilityMode="labeled"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Navigation drawer (left): slide-in menu -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/main_nav_drawer"
         android:layout_width="wrap_content"
@@ -49,6 +56,5 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:menu="@menu/main_nav_drawer_menu"
-        app:headerLayout="@menu/main_nav_drawer_header" />
-
+        app:headerLayout="@layout/nav_header_main" />
 </androidx.drawerlayout.widget.DrawerLayout>

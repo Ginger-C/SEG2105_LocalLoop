@@ -65,8 +65,12 @@ public class LoginFragment extends Fragment {
         });
 
         //Button # 1: Attempt log in operations in ViewModel
-        loginBtn.setOnClickListener(v -> viewModel.login());
-        Log.d("LoginFragment", "Login button clicked");
+        loginBtn.setOnClickListener(v ->
+            {
+            Log.d("LoginFragment", "Login button clicked");
+            viewModel.login();
+            });
+
         // Listening for LoginResult
         viewModel.getLoginResult().observe(getViewLifecycleOwner(), result -> {
             if (result.success) {
@@ -81,9 +85,9 @@ public class LoginFragment extends Fragment {
         });
 
         // Button #2:  Go to register
-        Log.d("LoginFragment", "Sign up button clicked");
         signUpBtn.setOnClickListener(v -> {
             if (getActivity() instanceof LoginRegisterActivity) {
+                Log.d("LoginFragment", "Sign up button clicked");
                 ((LoginRegisterActivity) getActivity()).showRegisterFragment();
             }
         });

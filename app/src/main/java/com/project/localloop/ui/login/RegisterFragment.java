@@ -42,6 +42,7 @@ public class RegisterFragment extends Fragment {
         EditText emailInput = view.findViewById(R.id.signUp_emailEditText);
         EditText userNameInput = view.findViewById(R.id.signUp_usernameEditText);
         EditText passwordInput = view.findViewById(R.id.signUp_passwordEditText);
+        EditText passwordConfirmInput = view.findViewById(R.id.signUp_pwConfirmEditText);
         MaterialButton signUpBtn = view.findViewById(R.id.signUp_submitButton);
         MaterialButton cancelBtn = view.findViewById(R.id.signUp_cancelButton);
 
@@ -77,10 +78,10 @@ public class RegisterFragment extends Fragment {
             String pwd = passwordInput.getText().toString().trim();
             String name = userNameInput.getText().toString().trim();
             int accountType = 1; // TODO: get from spinner
-
+            Log.d("RegisterFragment", "Register clicked");
             viewModel.register(email, pwd, name, accountType);
         });
-        Log.d("RegisterFragment", "Register clicked");
+
         // Listening for LoginResult
         viewModel.getRegisterResult().observe(getViewLifecycleOwner(), result -> {
             if (result.success) {
