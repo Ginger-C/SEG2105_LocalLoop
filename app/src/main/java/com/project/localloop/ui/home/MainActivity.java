@@ -2,9 +2,15 @@ package com.project.localloop.ui.home;
 
 import android.os.Bundle;
 import android.util.Log;
+
+
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 import com.project.localloop.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -72,15 +78,36 @@ public class MainActivity extends AppCompatActivity {
 
         // Step 4: Default center fragment
         nav.setSelectedItemId(R.id.botNav_center);
+
+        // Step 5: Drawer toggle
+        Toolbar toolbar = findViewById(R.id.main_top_toolbar);
+        setSupportActionBar(toolbar);
+
+        DrawerLayout drawerLayout = findViewById(R.id.main_drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawerLayout, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+        // Step 6: Drawer menu
+        NavigationView navView = findViewById(R.id.main_nav_drawer);
+        navView.setNavigationItemSelectedListener(item -> {
+            int id = item.getItemId();
+            // TODO: switch-case or if-else to handle menu items
+            drawerLayout.closeDrawers(); // Close drawer after selection
+            return true;
+        });
     }
 
     /**
      * Generate content of center fragment based on user role
      * */
     private Fragment createCenterFragment() {
+        // Get user info from Bundle
         Bundle bundle = new Bundle();
         bundle.putString("userName", userName);
         bundle.putLong("accountType", userRole);
+        Log.d("MainActivity", "Passing to fragment: userName=" + userName + " | accountType=" + userRole);
 
         Fragment target;
 
