@@ -10,7 +10,7 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="nav_user_name">Username</string>
-    <string name="nav_user_profile">User Profile</string>
+    <string name="nav_user_profile">Profile</string>
     <string name="nav_event_history">Event History</string>
     <string name="nav_suspended_list">Suspended List</string>
     <string name="nav_log_out">LOG OUt</string>

@@ -1,7 +1,11 @@
 package com.project.localloop.ui.home;
+import com.project.localloop.ui.login.LoginRegisterActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -19,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     // User info: passed via Intent or Firebase, shared via Bundle
     private Long accountType;
     private String userName;
+    private TextView userNameView;
+    private int currentIndex = 0; // Central fragment page
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,12 +64,17 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView nav = findViewById(R.id.main_bottom_nav);
         nav.setOnItemSelectedListener(item -> {
             Fragment target;
+            int newIndex = 0; // used for fragment switch animation
+
             int id = item.getItemId();
             if (id == R.id.botNav_left) {
+                newIndex = 1;
                 target = new EventPageFragment();
             } else if (id == R.id.botNav_center) {
+                newIndex = 0;
                 target = createCenterFragment();
             } else if (id == R.id.botNav_right) {
+                newIndex = 1;
                 target = createRightFragment();
             } else {
                 return false;
@@ -71,8 +82,11 @@ public class MainActivity extends AppCompatActivity {
 
             getSupportFragmentManager()
                     .beginTransaction()
+                    .setReorderingAllowed(true)
                     .replace(R.id.main_fragment_container, target)
                     .commit();
+
+            currentIndex = newIndex;
             return true;
         });
 
@@ -91,9 +105,22 @@ public class MainActivity extends AppCompatActivity {
         toggle.syncState();
         // Step 6: Drawer menu
         NavigationView navView = findViewById(R.id.main_nav_drawer);
+        View header = navView.getHeaderView(0);
+        userNameView = header.findViewById(R.id.nav_user_name);
+        userNameView.setText(userName);
         navView.setNavigationItemSelectedListener(item -> {
             int id = item.getItemId();
-            // TODO: switch-case or if-else to handle menu items
+            // TODO:  handle menu items
+            if (id == R.id.nav_menu_logout) {
+                item.setChecked(true);
+                FirebaseAuth.getInstance().signOut();
+
+                Intent intent = new Intent(MainActivity.this, LoginRegisterActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+
+                finish();
+            }
             drawerLayout.closeDrawers(); // Close drawer after selection
             return true;
         });

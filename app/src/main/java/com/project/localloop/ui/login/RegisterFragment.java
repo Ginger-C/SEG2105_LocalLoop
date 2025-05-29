@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.android.material.transition.MaterialSharedAxis;
 import com.project.localloop.R;
 
 import java.util.regex.Pattern;
@@ -172,6 +173,15 @@ public class RegisterFragment extends Fragment {
         cancelBtn.setOnClickListener(v -> getParentFragmentManager().popBackStack());
     }
 
+    // Fragment Transfer Motion
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // on X axis
+        setEnterTransition(new MaterialSharedAxis(MaterialSharedAxis.X, /* forward= */ true));
+        setReturnTransition(new MaterialSharedAxis(MaterialSharedAxis.X, /* forward= */ false));
+    }
+
     // Unified button state update
     private void updateSignUpButton() {
         boolean ok = validateEmail(emailInput.getText().toString().trim())
@@ -245,4 +255,5 @@ public class RegisterFragment extends Fragment {
         @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
         @Override public void afterTextChanged(Editable s) {}
     }
+
 }

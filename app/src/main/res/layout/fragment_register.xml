@@ -12,7 +12,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/signUp_email"
-        app:boxBackgroundMode="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -37,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:hint="@string/signUp_username"
-        app:boxBackgroundMode="none"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/signUp_emailLayout"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -62,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:hint="@string/logIn_password"
-        app:boxBackgroundMode="none"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/signUp_usernameLayout"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -88,7 +87,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:hint="@string/logIn_password"
-        app:boxBackgroundMode="none"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/signUp_passwordLayout"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -132,6 +131,7 @@
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/accountType_Participant" />
 
     </com.google.android.material.button.MaterialButtonToggleGroup>

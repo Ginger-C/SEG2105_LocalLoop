@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.android.material.transition.MaterialSharedAxis;
 import com.project.localloop.R;
 import androidx.fragment.app.Fragment;
 import androidx.annotation.NonNull;
@@ -40,6 +41,16 @@ public class LoginFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_login, container, false);
     }
 
+
+    // Fragment Transfer Motion
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // on X axis
+        setEnterTransition(new MaterialSharedAxis(MaterialSharedAxis.X, /* forward= */ true));
+        setReturnTransition(new MaterialSharedAxis(MaterialSharedAxis.X, /* forward= */ false));
+    }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -49,6 +60,7 @@ public class LoginFragment extends Fragment {
 
         // Assign UI elements for receiving inputs.
         emailInput = view.findViewById(R.id.login_emailEditText);
+        emailLayout = view.findViewById(R.id.login_emailLayout);
         passwordInput = view.findViewById(R.id.login_passwordEditText);
         passwordLayout = view.findViewById(R.id.login_passwordLayout);
         loginBtn  = view.findViewById(R.id.user_loginBtn);
@@ -67,7 +79,10 @@ public class LoginFragment extends Fragment {
                 viewModel.setEmail(s.toString());
                 if (emailSTR.isEmpty()) {
                     emailLayout.setError("Please enter username.");
-                } else {
+                }
+                else
+                {
+                    emailLayout.setError(null);
                     loginBtn.setEnabled(true);
                 }
             }

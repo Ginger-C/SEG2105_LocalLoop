@@ -61,8 +61,8 @@ public class HomeParticipantFragment extends Fragment {
     // Helper: convert accountType to readable name
     private String roleToString(long role) {
         if (role == 0) return "Admin";
-        if (role == 1) return "Participant";
-        if (role == 2) return "Host";
+        if (role == 1) return "Host";
+        if (role == 2) return "Participant";
         return "Unknown";
     }
 }

@@ -23,14 +23,17 @@ public class LoginRegisterActivity extends AppCompatActivity {
         // On login fragment by default
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
+                    .setReorderingAllowed(true) // for material animation
                     .replace(R.id.userLogIn_fragContainer, new LoginFragment(), LOGIN_FRAGMENT_TAG)
                     .commit();
         }
+
     }
 
     // Fragment Jump: register page
     public void showRegisterFragment() {
         getSupportFragmentManager().beginTransaction()
+                .setReorderingAllowed(true) // for material animation
                 .replace(R.id.userLogIn_fragContainer, new RegisterFragment(), REGISTER_FRAGMENT_TAG)
                 .addToBackStack(null) // Can return
                 .commit();
