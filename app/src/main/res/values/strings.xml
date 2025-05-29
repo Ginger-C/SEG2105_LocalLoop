@@ -1,6 +1,6 @@
 <resources>
     <!-- Strings related to system features -->
-    <string name="app_name">LocalLoop2025</string>
+    <string name="app_name">LocalLoop!</string>
     <string name="action_settings">Settings</string>
     <!-- Strings related to sidebar menu -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -13,7 +13,7 @@
     <string name="nav_user_profile">Profile</string>
     <string name="nav_event_history">Event History</string>
     <string name="nav_suspended_list">Suspended List</string>
-    <string name="nav_log_out">LOG OUt</string>
+    <string name="nav_log_out">LOG OUT</string>
     <!--Navigation Item Operation -->
     <string name ="nav_user_email">Email:</string>
     <string name ="nav_user_role">Role:</string>
