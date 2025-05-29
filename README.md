@@ -1,5 +1,6 @@
 # SEG2105_LocalLoop(Group-9)
 (designed as course project for SEG2105.)<br>
+Link : https://github.com/Ginger-C/SEG2105_LocalLoop
 LocalLoop is a mobile platform for local community events.<br>
 >Please use *admin@example.com* for testing purpose instead of *admin*
 ## General
