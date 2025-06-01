@@ -58,7 +58,7 @@ public class HomeHostFragment extends Fragment {
         }
     }
 
-    // Helper: convert accountType to readable name
+    // Formatter: accountType(long to String)
     private String roleToString(long role) {
         if (role == 0) return "Admin";
         if (role == 1) return "Host";

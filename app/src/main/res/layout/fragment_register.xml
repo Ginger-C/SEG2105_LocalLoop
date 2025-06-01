@@ -27,15 +27,16 @@
             app:layout_constraintVertical_bias="0.1"
             app:endIconMode="clear_text"
             app:errorEnabled="true"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
 
-                <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/signUp_emailEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 tools:ignore="VisualLintTextFieldSize" />
         </com.google.android.material.textfield.TextInputLayout>
+
         <!-- Username Input Field -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/signUp_usernameLayout"
@@ -43,7 +44,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="@string/signUp_username"
-
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/signUp_emailLayout"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -52,7 +52,7 @@
             app:layout_constraintVertical_bias="0.0"
             app:endIconMode="clear_text"
             app:errorEnabled="true"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/signUp_usernameEditText"
@@ -61,6 +61,7 @@
                 android:inputType="textEmailAddress"
                 tools:ignore="VisualLintTextFieldSize" />
         </com.google.android.material.textfield.TextInputLayout>
+
         <!-- Password Input Field -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/signUp_passwordLayout"
@@ -68,7 +69,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="@string/logIn_password"
-
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/signUp_usernameLayout"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -77,23 +77,22 @@
             app:layout_constraintVertical_bias="0.0"
             app:endIconMode="password_toggle"
             app:errorEnabled="true"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            >
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/signUp_passwordEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"
-               />
+                android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
+
         <!-- Password Confirm Input Field -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/signUp_pwConfirmLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="@string/logIn_password"
-
+            android:hint="@string/signUp_verifyPassword"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/signUp_passwordLayout"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -102,17 +101,17 @@
             app:layout_constraintVertical_bias="0.0"
             app:endIconMode="password_toggle"
             app:errorEnabled="true"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            >
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/signUp_pwConfirmEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                tools:ignore="VisualLintTextFieldSize"
-                />
+                tools:ignore="VisualLintTextFieldSize" />
         </com.google.android.material.textfield.TextInputLayout>
-         <!--   Account Type Selection -->
+
+        <!-- Account Type Selection -->
         <com.google.android.material.button.MaterialButtonToggleGroup
             android:id="@+id/signUp_accountTypeSelect"
             android:layout_width="0dp"
@@ -126,7 +125,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_host"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                style="@style/Widget.Material3.Button.OutlinedButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -134,14 +133,15 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_participant"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                style="@style/Widget.Material3.Button.OutlinedButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/accountType_Participant" />
 
         </com.google.android.material.button.MaterialButtonToggleGroup>
-        <!--    Submit or Cancel-->
+
+        <!-- Submit or Cancel -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/signUp_submitButton"
             android:layout_width="match_parent"
@@ -170,5 +170,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/signUp_submitButton"
             tools:ignore="VisualLintButtonSize" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

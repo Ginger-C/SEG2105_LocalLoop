@@ -34,7 +34,7 @@ public class HomeParticipantFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_home_host, container, false);
+        return inflater.inflate(R.layout.fragment_home_participant, container, false);
     }
 
     @Override
@@ -58,7 +58,7 @@ public class HomeParticipantFragment extends Fragment {
         }
     }
 
-    // Helper: convert accountType to readable name
+    // Formatter: accountType(long to String)
     private String roleToString(long role) {
         if (role == 0) return "Admin";
         if (role == 1) return "Host";

@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/fl_home_participant"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragHome_admin"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- TEMPORARY:Welcome String -->
-    <TextView
-        android:id="@+id/tv_welcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/welcome"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:layout_gravity="center"/>
+    <!-- View current user account -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_user_list"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:padding="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 </FrameLayout>

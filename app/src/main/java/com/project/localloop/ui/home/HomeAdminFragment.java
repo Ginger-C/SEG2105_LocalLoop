@@ -1,5 +1,6 @@
 package com.project.localloop.ui.home;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,14 +11,34 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.project.localloop.R;
 
+import com.project.localloop.database.User;
+import com.project.localloop.repository.DataRepository;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class HomeAdminFragment extends Fragment {
+
+    // Firebase encapsulated
+    private final DataRepository repo = DataRepository.getInstance();
 
     // Param passed from Bundle
     private String userName;
+    private String email;
+    String existingPassword;
     private long accountType;
+
+    // To view currently registered user list
+    private RecyclerView userListView;
+    private UserListAdapter ulAdapter;
+    private List <User> dataList = new ArrayList<>();
+
+
 
     public static HomeAdminFragment newInstance(String name, long role) {
         HomeAdminFragment fragment = new HomeAdminFragment();
@@ -34,7 +55,14 @@ public class HomeAdminFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_home_host, container, false);
+        View root =  inflater.inflate(R.layout.fragment_home_admin, container, false);
+        userListView = root.findViewById(R.id.recycler_user_list);
+        ulAdapter = new UserListAdapter(new ArrayList<>());
+        userListView.setLayoutManager(new LinearLayoutManager(getContext()));
+        userListView.setAdapter(ulAdapter);
+
+
+        return root;
     }
 
     @Override
@@ -44,21 +72,19 @@ public class HomeAdminFragment extends Fragment {
         TextView tv = view.findViewById(R.id.tv_welcome);
         Bundle args = getArguments();
 
+        // Receive bundle
         if (args != null) {
             userName = args.getString("userName", "User");
             accountType = args.getLong("accountType", -1);
 
             Log.d("HomeHostFragment", "Received bundle: userName=" + userName + " | accountType=" + accountType);
-
-            String roleText = roleToString(accountType);
-            tv.setText("Welcome, " + userName + "! You are logged in as (" + roleText + ").");
         } else {
             Log.e("HomeHostFragment", "No arguments received");
             tv.setText("Welcome (unknown)");
         }
     }
 
-    // Helper: convert accountType to readable name
+    // Formatter: accountType(long to String)
     private String roleToString(long role) {
         if (role == 0) return "Admin";
         if (role == 1) return "Host";

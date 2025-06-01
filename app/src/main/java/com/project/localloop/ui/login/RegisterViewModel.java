@@ -5,16 +5,19 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 //Import firebase related libraries
-import com.project.localloop.repository.UserRepository; //firebase encapsulated
+import com.project.localloop.repository.DataRepository;
+
 public class RegisterViewModel extends ViewModel {
     // Firebase encapsulated
-    private final UserRepository repo = UserRepository.getInstance();
+    private final DataRepository repo = DataRepository.getInstance();
     // Mutable Liva Data: listen for changes
     private final MutableLiveData<String> email     = new MutableLiveData<>();
     private final MutableLiveData<String> userName  = new MutableLiveData<>();
     private final MutableLiveData<Long> accountType  = new MutableLiveData<>();
     private final MutableLiveData<String> password  = new MutableLiveData<>();
     private final MutableLiveData<String> confirmPassword  = new MutableLiveData<>();
+    private final boolean isSuspended = false;
+
     // Register Result. Inner class declared at bottom.
     private final MutableLiveData<RegisterResult> registerResult = new MutableLiveData<>();
     // Setter and Getter
@@ -29,15 +32,15 @@ public class RegisterViewModel extends ViewModel {
     public LiveData<Long> getAccountType() { return accountType; }
     public LiveData<RegisterResult> getRegisterResult() { return registerResult; }
     public void register(String email, String password,String username,long accountType) {
-        repo.registerUser(email, password,username,accountType, new UserRepository.Callback() {
+        repo.registerUser(email, password,username,accountType, new DataRepository.Callback() {
             @Override
             public void onSuccess() {
-                registerResult.setValue(new RegisterViewModel.RegisterResult(true, null,username,accountType));
+                registerResult.setValue(new RegisterViewModel.RegisterResult(true, null,username,accountType,isSuspended));
             }
 
             @Override
             public void onError(String error) {
-                registerResult.setValue(new RegisterViewModel.RegisterResult(false, error,null,-1));
+                registerResult.setValue(new RegisterViewModel.RegisterResult(false, error,null,-1,true));
             }
         });
     }
@@ -47,12 +50,14 @@ public class RegisterViewModel extends ViewModel {
         public final String error;
         public final String userName;
         public final long accountType;
+        public final boolean isSuspended;
 
-        public RegisterResult(boolean success, String error,String userName, long accountType) {
+        public RegisterResult(boolean success, String error,String userName,long accountType, boolean isSuspended) {
             this.success = success;
             this.error = error;
             this.userName = userName;
             this.accountType = accountType;
+            this.isSuspended = isSuspended;
         }
     }
 

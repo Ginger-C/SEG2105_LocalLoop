@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             tools:ignore="VisualLintTextFieldSize"
             />
     </com.google.android.material.textfield.TextInputLayout>
@@ -39,8 +39,8 @@
         android:id="@+id/login_passwordLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
         android:hint="@string/logIn_password"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,9 +58,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            tools:ignore="VisualLintTextFieldSize"
             android:inputType="textPassword"
-           />
+            tools:ignore="VisualLintTextFieldSize" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton

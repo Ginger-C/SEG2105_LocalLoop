@@ -5,11 +5,11 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import android.util.Log;
 
-import com.project.localloop.repository.UserRepository;
+import com.project.localloop.repository.DataRepository;
 
 public class LoginViewModel extends ViewModel {
     // Firebase encapsulated
-    private final UserRepository repo = UserRepository.getInstance();
+    private final DataRepository repo = DataRepository.getInstance();
     // Mutable LiveData: listen for changes
     private final MutableLiveData<String> email    = new MutableLiveData<>();
     private final MutableLiveData<String> password = new MutableLiveData<>();
@@ -43,7 +43,7 @@ public class LoginViewModel extends ViewModel {
         }
 
         // 2. Case succeed: login and load user data
-        repo.loginAndLoadUserData(emailStr, pwdStr, new UserRepository.UserDataCallback() {
+        repo.loginAndLoadUserData(emailStr, pwdStr, new DataRepository.UserDataCallback() {
             @Override
             public void onSuccess(String userName, int accountType) {
                 Log.d("LoginVM", "onSuccess: userName=" + userName + "  accountType=" + accountType);

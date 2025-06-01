@@ -15,14 +15,14 @@
         <!--Toolbar -->
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/main_top_toolbar"
-            android:layout_width="0dp"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_width="409dp"
+            android:layout_height="86dp"
             android:background="?attr/colorPrimary"
             android:title="@string/app_name"
             android:titleTextColor="@android:color/white"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <!-- Viewpage2 for Fragment change -->
         <androidx.viewpager2.widget.ViewPager2
@@ -39,13 +39,16 @@
             android:id="@+id/main_bottom_nav"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="?attr/colorSurface"
             app:menu="@menu/main_bottom_nav_menu"
             app:labelVisibilityMode="labeled"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            style="@style/Widget.Material3.BottomNavigationView"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <!-- Nav Drawer -->
     <com.google.android.material.navigation.NavigationView
@@ -54,5 +57,6 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header_main"
-        app:menu="@menu/main_nav_drawer_menu"/>
+        app:menu="@menu/main_nav_drawer_menu"
+        style="@style/Widget.Material3.NavigationView"/>
 </androidx.drawerlayout.widget.DrawerLayout>

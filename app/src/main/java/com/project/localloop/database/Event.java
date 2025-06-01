@@ -1,5 +1,6 @@
 package com.project.localloop.database;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  * @author Ginger-C
  * @since 2025-05-27
  */
-public class Event {
+public class Event implements Serializable  {
 
     // ========== Basic Information ==========
     private String eventUID; // Firebase document ID

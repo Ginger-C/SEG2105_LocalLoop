@@ -91,6 +91,9 @@
     <!-- Admin Functionalities -->
     <string name="admin_ApproveEvent">Approve Event</string>
     <string name="admin_RejectEvent">Reject Event</string>
+    <string name="registered_userNamer">User Name</string>
+    <string name="registered_userEmail">Email:</string>
+    <string name="registered_userStatus">Status:</string>
 
     <!-- Participant Functionalities -->
     <string name="participant_JoinEvent">Join Event</string>

@@ -1,5 +1,6 @@
 package com.project.localloop.database;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,7 +16,7 @@ import java.util.Map;
  * @author Ginger-C
  * @since 2025-05-24
  */
-public abstract class User {
+public abstract class User implements Serializable { // implements Serializable for Bundle passing
 
     // ===========================
     // Account core information
@@ -136,7 +137,7 @@ public abstract class User {
      * @param userId Firebase UID
      * @throws IllegalStateException if already set
      */
-    public void setUserId(String userId) {
+    public void setUID(String userId) {
         if (!userIdLocked) {
             this.userId = userId;
             this.userIdLocked = true;
