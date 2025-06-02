@@ -19,7 +19,6 @@ public class Event implements Serializable  {
 
     // ========== Basic Information ==========
     private String eventUID; // Firebase document ID
-    private boolean eventIdLocked = false; // after assigning eventID, no overwrite.
     private String eventName;
     private String eventDescription;
     private Date eventDateTime;   // combined date and time
@@ -70,7 +69,7 @@ public class Event implements Serializable  {
     }
 
     // ========== Getters and Setters ==========
-    public String geteventUID() { return eventUID; }
+    public String getEventUID() { return eventUID; }
     public void setEventUID(String eventUID) {
         if (this.eventUID != null && !this.eventUID.equals(eventUID)) {
             throw new IllegalStateException("eventUID can only be set once.");

@@ -1,6 +1,4 @@
 package com.project.localloop.ui.home;
-
-import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,9 +9,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.project.localloop.R;
 
@@ -36,6 +34,9 @@ public class HomeAdminFragment extends Fragment {
     // To view currently registered user list
     private RecyclerView userListView;
     private UserListAdapter ulAdapter;
+
+    // To refresh user list
+    private SwipeRefreshLayout swipeRefresh;
 
 
     public static HomeAdminFragment newInstance(String name, long role) {
@@ -60,41 +61,54 @@ public class HomeAdminFragment extends Fragment {
         // Initialize adapter
         ulAdapter = new UserListAdapter(new ArrayList<>());
         userListView.setAdapter(ulAdapter);
+        // Initialize swipe refresh
+        swipeRefresh = root.findViewById(R.id.adminFrag_swipeRefresh);
+        // Refresh content upon creation
+        swipeRefresh.setRefreshing(true);
+        repo.fetchAllRegisteredUsersOnce(new DataRepository.RegUserListCallback() {
+            @Override
+            public void onSuccess(List<User> registeredUserList) {
+                ulAdapter.updateData(registeredUserList);
+                swipeRefresh.setRefreshing(false); // 停止加载动画
+            }
+
+            @Override
+            public void onError(String errorMsg) {
+                Log.e("HomeAdminFragment", "Failed to fetch users: " + errorMsg);
+                swipeRefresh.setRefreshing(false);
+            }
+        });
         return root;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        TextView tv = view.findViewById(R.id.tv_welcome);
         Bundle args = getArguments();
 
-        // Receive bundle
+        // Receive bundle : test
         if (args != null) {
             curUserName = args.getString("userName", "User");
             curAccountType = args.getLong("accountType", -1);
-
             Log.d("HomeHostFragment", "Received bundle: userName=" + curUserName + " | accountType=" + curAccountType);
-        } else {
-            Log.e("HomeHostFragment", "No arguments received");
-            tv.setText("Welcome (unknown)");
         }
+        // Refresh for getting new results
+        swipeRefresh.setOnRefreshListener(() -> {
+            repo.fetchAllRegisteredUsersOnce(new DataRepository.RegUserListCallback() {
+                @Override
+                public void onSuccess(List<User> registeredUserList) {
+                    ulAdapter.updateData(registeredUserList);
+                    swipeRefresh.setRefreshing(false);
+                }
 
-        // Observe data change
-        repo.getAllUsers().observe(getViewLifecycleOwner(), userList -> {
-            ulAdapter.updateData(userList);
+                @Override
+                public void onError(String errorMsg) {
+                    Log.e("HomeAdminFragment", "Failed to fetch users: " + errorMsg);
+                    swipeRefresh.setRefreshing(false);
+                }
+            });
         });
-    }
 
-    // Formatter: accountType(long to String)
-    private String roleToString(long role) {
-        if (role == 0) return "Admin";
-        if (role == 1) return "Host";
-        if (role == 2) return "Participant";
-        return "Unknown";
     }
-
-    // Refresh for getting new results
 
 }

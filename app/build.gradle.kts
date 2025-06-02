@@ -68,7 +68,7 @@ dependencies {
 
     //UI Layout
     implementation(libs.material.v1110)
-    androidTestImplementation(platform(libs.compose.bom))
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
