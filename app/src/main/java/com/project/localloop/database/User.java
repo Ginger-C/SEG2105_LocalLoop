@@ -29,38 +29,38 @@ public class User implements Serializable { // implements Serializable for Bundl
      * Firebase UID. Set once from FirebaseAuth.
      * No override allowed once set.
      */
-    protected String userId;
+    private String userId;
 
     /**
      * Once userId is set, this flag prevents future changes.
      */
-    protected boolean userIdLocked = false;
+    private boolean userIdLocked = false;
 
     /**
      * Display name of the user. Editable.
      */
-    protected String userName;
+    private String userName;
 
     /**
      * Immutable after registration. Unique for each account.
      */
-    protected String email;
+    private String email;
 
     /**
      * User password. Can be updated.
      */
-    protected String password;
+    private String password;
 
     /**
      * Immutable. Assigned once during registration:
      * 0 = Admin, 1 = Host, 2 = Participant, -1 = Error.
      */
-    protected int accountType;
+    private int accountType;
 
     /**
      * Suspension status. Default = false.
      */
-    protected boolean isSuspended = false;
+    private boolean isSuspended = false;
 
     // ===========================
     // Constructors
@@ -86,12 +86,11 @@ public class User implements Serializable { // implements Serializable for Bundl
     // Getters
     // ===========================
 
-    /**
-     * @return Firebase user ID
-     */
+    /* @return Firebase user ID
+
     public String getUserId() {
         return userId;
-    }
+    }  */
 
     /**
      * @return user's display name
