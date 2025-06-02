@@ -60,7 +60,7 @@ public class User implements Serializable { // implements Serializable for Bundl
     /**
      * Suspension status. Default = false.
      */
-    private boolean isSuspended = false;
+    protected boolean isSuspended = false;
 
     // ===========================
     // Constructors
@@ -86,11 +86,8 @@ public class User implements Serializable { // implements Serializable for Bundl
     // Getters
     // ===========================
 
-    /* @return Firebase user ID
-
-    public String getUserId() {
-        return userId;
-    }  */
+    // @return Firebase user ID
+    public String getUserId() {return userId;}
 
     /**
      * @return user's display name
@@ -123,7 +120,7 @@ public class User implements Serializable { // implements Serializable for Bundl
     /**
      * @return suspension status
      */
-    public boolean isSuspended() {
+    public boolean getIsSuspended() {
         return isSuspended;
     }
 
@@ -136,13 +133,11 @@ public class User implements Serializable { // implements Serializable for Bundl
      * @param userId Firebase UID
      * @throws IllegalStateException if already set
      */
-    public void setUID(String userId) {
-        if (!userIdLocked) {
-            this.userId = userId;
-            this.userIdLocked = true;
-        } else {
-            throw new IllegalStateException("userId can only be set once.");
+    public void setUserId(String userId) {
+        if (this.userId != null && !this.userId.equals(userId)){
+            throw new IllegalStateException("User UID can only be set once.");
         }
+        this.userId = userId;
     }
 
     /**
@@ -166,8 +161,9 @@ public class User implements Serializable { // implements Serializable for Bundl
      *
      * @param suspended true to suspend, false to release
      */
-    protected void setSuspended(boolean suspended) {
-        // Override in sub-class
+    public void setIsSuspended(boolean suspended)
+    {
+        this.isSuspended = suspended;
 
     }
 

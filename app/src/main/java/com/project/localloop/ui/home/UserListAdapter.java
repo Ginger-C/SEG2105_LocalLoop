@@ -57,7 +57,7 @@ public class UserListAdapter extends RecyclerView.Adapter <UserListAdapter.UserL
         holder.nameTxtView.setText(user.getUserName());
         holder.emailTxtView.setText(user.getEmail());
         holder.accountTypeTxtView.setText(user.getAccountType() == 1 ? "Host" : "Participant");
-        holder.statusTxtView.setText(user.isSuspended() ? "Suspended" : "Active");
+        holder.statusTxtView.setText(user.getIsSuspended() ? "Suspended" : "Active");
     }
 
     @Override

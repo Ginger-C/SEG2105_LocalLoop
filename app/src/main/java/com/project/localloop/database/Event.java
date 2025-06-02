@@ -1,5 +1,7 @@
 package com.project.localloop.database;
 
+import com.google.firebase.firestore.DocumentId;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -70,12 +72,10 @@ public class Event implements Serializable  {
     // ========== Getters and Setters ==========
     public String geteventUID() { return eventUID; }
     public void setEventUID(String eventUID) {
-        if (!eventIdLocked) {
-            this.eventUID = eventUID;
-            this.eventIdLocked = true;
-        } else {
+        if (this.eventUID != null && !this.eventUID.equals(eventUID)) {
             throw new IllegalStateException("eventUID can only be set once.");
         }
+        this.eventUID = eventUID;
     }
     public List<String> getCategoryIds() {
         return categoryIds;

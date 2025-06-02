@@ -28,9 +28,4 @@ public class Admin extends User {
         super(userName, email, password, 0); // accountType = 0
     }
 
-    protected void setSuspended(boolean suspended)
-    {
-        this.isSuspended = false; //regardless of param
-    }
-
 }

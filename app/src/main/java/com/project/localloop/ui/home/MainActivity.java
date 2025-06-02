@@ -214,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
                                     // 1. Passing values to activity
                                     userName    = currentUser.getUserName();
                                     accountType = currentUser.getAccountType();
-                                    isDisbled   = currentUser.isSuspended();
+                                    isDisbled   = currentUser.getIsSuspended();
                                     bundle = new Bundle();
                                     bundle.putSerializable("loggedIn_user", currentUser);
 

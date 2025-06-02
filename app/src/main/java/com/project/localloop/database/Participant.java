@@ -49,9 +49,4 @@ public class Participant extends User {
     public void registerEvent(String event) {
         registeredEventIds.add(event);
     }
-
-    protected void setSuspended(boolean suspended)
-    {
-        this.isSuspended = suspended;
-    }
 }

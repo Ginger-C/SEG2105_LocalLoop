@@ -19,7 +19,7 @@ public class Host extends User {
      * Can include ongoing and past events.
      */
     protected List<String> hostedEventIds = new ArrayList<>(); // use event UID to identify
-
+    protected List<String> currentEventIds = new ArrayList<>(); // use event UID to identify
     /**
      * Required empty constructor for Firebase.
      */
@@ -52,9 +52,4 @@ public class Host extends User {
         hostedEventIds.add(event);
     }
 
-    // Suspension
-    protected void setSuspended(boolean suspended)
-    {
-        this.isSuspended = suspended;
-    }
 }

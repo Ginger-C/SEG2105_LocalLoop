@@ -195,7 +195,7 @@ public class DataRepository {
                 if (doc != null && doc.exists()) {
                     User user = doc.toObject(User.class);
                     if (user != null) {
-                        user.setUID(doc.getId());
+                        user.setUserId(doc.getId());
                         userInstanceData.postValue(user);
                     }
                 }
@@ -221,8 +221,9 @@ public class DataRepository {
                     List<User> currentUserList = new ArrayList<>();
                     if (snapshots != null) {
                         for (QueryDocumentSnapshot doc : snapshots) {
+                            Log.d("DataRepository", "users snapshot received: " + snapshots.size());
                             User currentUser = doc.toObject(User.class);
-                            currentUser.setUID(doc.getId()); //set UID
+                            currentUser.setUserId(doc.getId()); //set UID
                             currentUserList.add(currentUser);
                         }
                     }
@@ -245,7 +246,7 @@ public class DataRepository {
                 if (doc != null && doc.exists()) {
                     Event selectedEvent = doc.toObject(Event.class);
                     if (selectedEvent != null) {
-                        selectedEvent.setEventUID(doc.getId());
+                        selectedEvent = doc.toObject(Event.class);
                         eventInstanceData.postValue(selectedEvent);
                     }
                 }
