@@ -94,6 +94,7 @@
     <string name="registered_userNamer">User Name</string>
     <string name="registered_userEmail">Email:</string>
     <string name="registered_userStatus">Status:</string>
+    <string name="registered_userAccountType">Account Type:</string>
 
     <!-- Participant Functionalities -->
     <string name="participant_JoinEvent">Join Event</string>

@@ -16,7 +16,7 @@ import java.util.Map;
  * @author Ginger-C
  * @since 2025-05-24
  */
-public abstract class User implements Serializable { // implements Serializable for Bundle passing
+public class User implements Serializable { // implements Serializable for Bundle passing
 
     // ===========================
     // Account core information
@@ -164,9 +164,13 @@ public abstract class User implements Serializable { // implements Serializable 
 
     /**
      * Sets suspension status (admin only).
+     *
      * @param suspended true to suspend, false to release
      */
-    protected abstract void setSuspended(boolean suspended);
+    protected void setSuspended(boolean suspended) {
+        // Override in sub-class
+
+    }
 
     // ===========================
     //  Firebase Mapper

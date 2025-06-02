@@ -5,9 +5,9 @@ LocalLoop is a mobile platform for local community events.<br>
 >Please use *admin@example.com* for testing purpose instead of *admin*
 ## General
 -  compileSdk = 35 / minSDK = 33
-- UI: Material Design 2 (subject to change)
-- DB: Firebase database (auth + firestore)
-- 
+- UI: Material Design 3
+- DB: Firebase database
+
 ### Account policy
 - Username
   - no more than 20 characters

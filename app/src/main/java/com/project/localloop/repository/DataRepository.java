@@ -8,7 +8,6 @@ import androidx.annotation.Nullable;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 // For Live Data Updates
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -176,7 +175,7 @@ public class DataRepository {
     // =============================================
     //              Fetching Data
     // =============================================
-    public LiveData<List<User>> getAllUsers() {
+    public MutableLiveData<List<User>> getAllUsers() {
         getAllRegisteredUsers();
         return allRegisteredUsers;
     }

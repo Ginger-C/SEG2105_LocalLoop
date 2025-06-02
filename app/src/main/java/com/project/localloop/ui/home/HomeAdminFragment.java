@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,17 +28,14 @@ public class HomeAdminFragment extends Fragment {
     // Firebase encapsulated
     private final DataRepository repo = DataRepository.getInstance();
 
-    // Param passed from Bundle
-    private String userName;
-    private String email;
-    String existingPassword;
-    private long accountType;
+    // Param passed from Bundle :current user
+    private String curUserName;
+    private long curAccountType;
+
 
     // To view currently registered user list
     private RecyclerView userListView;
     private UserListAdapter ulAdapter;
-    private List <User> dataList = new ArrayList<>();
-
 
 
     public static HomeAdminFragment newInstance(String name, long role) {
@@ -56,12 +54,12 @@ public class HomeAdminFragment extends Fragment {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View root =  inflater.inflate(R.layout.fragment_home_admin, container, false);
+        // Initialize recycler view
         userListView = root.findViewById(R.id.recycler_user_list);
-        ulAdapter = new UserListAdapter(new ArrayList<>());
         userListView.setLayoutManager(new LinearLayoutManager(getContext()));
+        // Initialize adapter
+        ulAdapter = new UserListAdapter(new ArrayList<>());
         userListView.setAdapter(ulAdapter);
-
-
         return root;
     }
 
@@ -74,14 +72,19 @@ public class HomeAdminFragment extends Fragment {
 
         // Receive bundle
         if (args != null) {
-            userName = args.getString("userName", "User");
-            accountType = args.getLong("accountType", -1);
+            curUserName = args.getString("userName", "User");
+            curAccountType = args.getLong("accountType", -1);
 
-            Log.d("HomeHostFragment", "Received bundle: userName=" + userName + " | accountType=" + accountType);
+            Log.d("HomeHostFragment", "Received bundle: userName=" + curUserName + " | accountType=" + curAccountType);
         } else {
             Log.e("HomeHostFragment", "No arguments received");
             tv.setText("Welcome (unknown)");
         }
+
+        // Observe data change
+        repo.getAllUsers().observe(getViewLifecycleOwner(), userList -> {
+            ulAdapter.updateData(userList);
+        });
     }
 
     // Formatter: accountType(long to String)
@@ -91,4 +94,7 @@ public class HomeAdminFragment extends Fragment {
         if (role == 2) return "Participant";
         return "Unknown";
     }
+
+    // Refresh for getting new results
+
 }

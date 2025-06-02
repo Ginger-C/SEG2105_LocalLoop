@@ -13,23 +13,34 @@ import com.project.localloop.database.User;
 
 import java.util.List;
 
+/**
+ * UserListAdapter.java
+ * Adapter for preparing data for RecyclerView, showing user list stored in Firebase
+ * synchronously in HomeFragment
+ *
+ * @author Ginger-C
+ */
 public class UserListAdapter extends RecyclerView.Adapter <UserListAdapter.UserListViewHolder> {
 
-    private List <User> dataList;
+    private List <User> userList; // read-only
 
     public static class UserListViewHolder extends RecyclerView.ViewHolder {
-        TextView nameView;
-        TextView emailView;
+        TextView nameTxtView;
+        TextView emailTxtView;
+        TextView accountTypeTxtView;
+        TextView statusTxtView;
 
         public UserListViewHolder(View itemView) {
             super(itemView);
-            //nameView = itemView.findViewById(R.id.text_user_name);
-            //emailView = itemView.findViewById(R.id.text_user_email);
+            nameTxtView = itemView.findViewById(R.id.adminFrag_userName);
+            emailTxtView = itemView.findViewById(R.id.adminFrag_email);
+            accountTypeTxtView = itemView.findViewById(R.id.adminFrag_accountType);
+            statusTxtView = itemView.findViewById(R.id.adminFrag_status);
         }
     }
 
     public UserListAdapter(List<User> list) {
-        this.dataList = list;
+        this.userList = list;
     }
 
     @NonNull
@@ -42,12 +53,23 @@ public class UserListAdapter extends RecyclerView.Adapter <UserListAdapter.UserL
 
     @Override
     public void onBindViewHolder(@NonNull UserListViewHolder holder, int position) {
-        User data = dataList.get(position);
+        User user = userList.get(position);
+        holder.nameTxtView.setText(user.getUserName());
+        holder.emailTxtView.setText(user.getEmail());
+        holder.accountTypeTxtView.setText(user.getAccountType() == 1 ? "Host" : "Participant");
+        holder.statusTxtView.setText(user.isSuspended() ? "Suspended" : "Active");
     }
 
     @Override
     public int getItemCount() {
-        return dataList.size();
+        return userList.size();
+    }
+
+    void updateData(List<User> newList)
+    {
+        this.userList = newList;
+        notifyDataSetChanged();
+
     }
 }
 
